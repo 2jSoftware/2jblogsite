@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Global Development Research Portal</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Global Development Research Portal</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html" class="active">Research</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html" class="btn-login">Login</a></li>
+                    <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="research-header">
+        <div class="container">
+            <h2>Sustainable Development Research</h2>
+            <p>Explore scientific principles, government research, and practical implementation guides for sustainable technologies.</p>
+            <div class="search-filter">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search research topics...">
+                    <button type="button">Search</button>
+                </div>
+                <div class="filter-controls">
+                    <label for="topic-filter">Filter by:</label>
+                    <select id="topic-filter">
+                        <option value="all">All Topics</option>
+                        <option value="energy">Energy</option>
+                        <option value="water">Water</option>
+                        <option value="agriculture">Agriculture</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="education">Education</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="research-categories">
+        <div class="container">
+            <div class="category-section" id="energy">
+                <h3>Energy Solutions</h3>
+                <div class="research-grid">
+                    <article class="research-card">
+                        <div class="research-image">
+                            <img src="public/img/magnetic-energy-placeholder.jpg" alt="Magnetic Energy">
+                        </div>
+                        <div class="research-content">
+                            <h4>Magnetic Energy Generation</h4>
+                            <p>Leveraging electromagnetic induction principles to create sustainable power sources using locally available materials.</p>
+                            <div class="research-meta">
+                                <span class="source">Source: Declassified DoE Documents</span>
+                                <span class="date">Updated: May 2023</span>
+                            </div>
+                            <a href="research/magnetic-energy.html" class="btn-secondary">View Research</a>
+                        </div>
+                    </article>
+                    
+                    <article class="research-card">
+                        <div class="research-image">
+                            <img src="public/img/solar-energy-placeholder.jpg" alt="Solar Energy">
+                        </div>
+                        <div class="research-content">
+                            <h4>Low-Cost Solar Solutions</h4>
+                            <p>Simplified photovoltaic systems designed for regions with limited technical infrastructure but abundant sunshine.</p>
+                            <div class="research-meta">
+                                <span class="source">Source: National Renewable Energy Lab</span>
+                                <span class="date">Updated: June 2023</span>
+                            </div>
+                            <a href="research/solar-energy.html" class="btn-secondary">View Research</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            
+            <div class="category-section" id="water">
+                <h3>Water Technologies</h3>
+                <div class="research-grid">
+                    <article class="research-card">
+                        <div class="research-image">
+                            <img src="public/img/water-filtration-placeholder.jpg" alt="Water Filtration">
+                        </div>
+                        <div class="research-content">
+                            <h4>Local Material Filtration Systems</h4>
+                            <p>Water purification approaches using clay, sand, charcoal, and other commonly available materials.</p>
+                            <div class="research-meta">
+                                <span class="source">Source: WHO Research Data</span>
+                                <span class="date">Updated: April 2023</span>
+                            </div>
+                            <a href="research/water-filtration.html" class="btn-secondary">View Research</a>
+                        </div>
+                    </article>
+                    
+                    <article class="research-card">
+                        <div class="research-image">
+                            <img src="public/img/rainwater-collection-placeholder.jpg" alt="Rainwater Collection">
+                        </div>
+                        <div class="research-content">
+                            <h4>Efficient Rainwater Collection</h4>
+                            <p>Optimized designs for rainwater harvesting systems suitable for various climate conditions and building types.</p>
+                            <div class="research-meta">
+                                <span class="source">Source: UNICEF Field Reports</span>
+                                <span class="date">Updated: March 2023</span>
+                            </div>
+                            <a href="research/rainwater-collection.html" class="btn-secondary">View Research</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            
+            <div class="category-section" id="agriculture">
+                <h3>Sustainable Agriculture</h3>
+                <div class="research-grid">
+                    <article class="research-card">
+                        <div class="research-image">
+                            <img src="public/img/drought-resistant-placeholder.jpg" alt="Drought Resistant Farming">
+                        </div>
+                        <div class="research-content">
+                            <h4>Drought-Resistant Farming Techniques</h4>
+                            <p>Cultivation methods and crop selections that thrive in water-limited environments while maintaining nutritional value.</p>
+                            <div class="research-meta">
+                                <span class="source">Source: FAO Research Papers</span>
+                                <span class="date">Updated: June 2023</span>
+                            </div>
+                            <a href="research/drought-farming.html" class="btn-secondary">View Research</a>
+                        </div>
+                    </article>
+                    
+                    <article class="research-card">
+                        <div class="research-image">
+                            <img src="public/img/soil-regeneration-placeholder.jpg" alt="Soil Regeneration">
+                        </div>
+                        <div class="research-content">
+                            <h4>Soil Regeneration Methods</h4>
+                            <p>Natural approaches to restore soil health and fertility in over-farmed or degraded agricultural lands.</p>
+                            <div class="research-meta">
+                                <span class="source">Source: Agricultural Research Service</span>
+                                <span class="date">Updated: May 2023</span>
+                            </div>
+                            <a href="research/soil-regeneration.html" class="btn-secondary">View Research</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="implementation-levels">
+        <div class="container">
+            <h3>Implementation Approaches</h3>
+            <p>Every research topic includes implementation guides at different complexity and resource levels:</p>
+            
+            <div class="levels-grid">
+                <div class="level-card">
+                    <h4>Level 1: Demonstration</h4>
+                    <p>Simple models to demonstrate core principles and educate communities about the technology.</p>
+                    <ul>
+                        <li>Minimal materials required</li>
+                        <li>No specialized tools needed</li>
+                        <li>Suitable for educational purposes</li>
+                    </ul>
+                </div>
+                
+                <div class="level-card">
+                    <h4>Level 2: Basic Implementation</h4>
+                    <p>Practical designs that provide actual utility with minimal resource requirements.</p>
+                    <ul>
+                        <li>Locally available materials</li>
+                        <li>Basic tools required</li>
+                        <li>Suitable for individual or family use</li>
+                    </ul>
+                </div>
+                
+                <div class="level-card">
+                    <h4>Level 3: Community Scale</h4>
+                    <p>Larger implementations designed to serve multiple households or entire communities.</p>
+                    <ul>
+                        <li>More materials but still locally sourced</li>
+                        <li>Some specialized tools recommended</li>
+                        <li>Suitable for village or community deployment</li>
+                    </ul>
+                </div>
+                
+                <div class="level-card">
+                    <h4>Level 4: Advanced Systems</h4>
+                    <p>Sophisticated designs approaching commercial-grade performance while maintaining accessibility.</p>
+                    <ul>
+                        <li>Combination of local and imported materials</li>
+                        <li>Some technical expertise required</li>
+                        <li>Suitable for long-term infrastructure</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="download-resources">
+        <div class="container">
+            <h3>Downloadable Resources</h3>
+            <p>Access technical specifications, construction plans, and educational materials for offline use:</p>
+            
+            <div class="download-grid">
+                <a href="#" class="download-card">
+                    <div class="file-icon">PDF</div>
+                    <div class="file-info">
+                        <h4>Complete Research Compendium</h4>
+                        <p>Comprehensive PDF with all research topics (15MB)</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="download-card">
+                    <div class="file-icon">ZIP</div>
+                    <div class="file-info">
+                        <h4>Construction Diagrams</h4>
+                        <p>High-resolution technical drawings and schematics (8MB)</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="download-card">
+                    <div class="file-icon">PDF</div>
+                    <div class="file-info">
+                        <h4>Materials Sourcebook</h4>
+                        <p>Guide to finding and selecting appropriate materials (5MB)</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="download-card">
+                    <div class="file-icon">ZIP</div>
+                    <div class="file-info">
+                        <h4>Educational Resources</h4>
+                        <p>Teaching materials for community workshops (12MB)</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="login-note">
+                <p><strong>Note:</strong> <a href="login.html">Log in</a> to access additional specialized research materials and higher-resolution resources.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Global Development Research Portal</h3>
+                    <p>Making sustainable development knowledge accessible to those who need it most.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@devresearchportal.org</p>
+                    <p>Follow us on social media</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">Twitter</a>
+                        <a href="#" class="social-icon">Facebook</a>
+                        <a href="#" class="social-icon">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Global Development Research Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="public/js/main.js"></script>
+</body>
+</html> 

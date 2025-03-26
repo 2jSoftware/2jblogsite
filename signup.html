@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Global Development Research Portal</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Global Development Research Portal</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html" class="btn-login">Login</a></li>
+                    <li><a href="signup.html" class="btn-signup active">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="signup-form">
+        <div class="container">
+            <h2>Join Our Global Community</h2>
+            <p>Create an account to save research materials, participate in forums, and contribute to the blog.</p>
+            
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <small>Password must be at least 8 characters long and include a number and special character.</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country" required>
+                        <option value="">Select Your Country</option>
+                        <option value="malawi">Malawi</option>
+                        <option value="kenya">Kenya</option>
+                        <option value="tanzania">Tanzania</option>
+                        <option value="other">Other (Please Specify)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="other-country-group" style="display: none;">
+                    <label for="other-country">Specify Country</label>
+                    <input type="text" id="other-country" name="other-country">
+                </div>
+                
+                <div class="form-group">
+                    <label for="areas-of-interest">Areas of Interest (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="interests" value="energy"> Energy Solutions
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interests" value="water"> Water Purification
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interests" value="agriculture"> Sustainable Agriculture
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interests" value="healthcare"> Healthcare
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interests" value="education"> Education
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="terms" required>
+                        I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn-primary">Create Account</button>
+                </div>
+            </form>
+            
+            <div class="alt-signup">
+                <p>Already have an account? <a href="login.html">Log In</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Global Development Research Portal</h3>
+                    <p>Making sustainable development knowledge accessible to those who need it most.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@devresearchportal.org</p>
+                    <p>Follow us on social media</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">Twitter</a>
+                        <a href="#" class="social-icon">Facebook</a>
+                        <a href="#" class="social-icon">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Global Development Research Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="public/js/main.js"></script>
+    <script>
+        // Show "Other Country" field when "Other" is selected
+        document.getElementById('country').addEventListener('change', function() {
+            const otherCountryGroup = document.getElementById('other-country-group');
+            if (this.value === 'other') {
+                otherCountryGroup.style.display = 'block';
+            } else {
+                otherCountryGroup.style.display = 'none';
+            }
+        });
+
+        // Form validation and submission
+        document.getElementById('registration-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Here you would typically send the form data to your server
+            // For this MVP, we'll just simulate a successful registration
+            alert('Registration successful! You can now log in with your credentials.');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html> 

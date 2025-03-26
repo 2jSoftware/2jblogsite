@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Global Development Research Portal</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Global Development Research Portal</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html" class="btn-login">Login</a></li>
+                    <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="blog-header">
+        <div class="container">
+            <h2>Global Perspectives Blog</h2>
+            <p>Stories, experiences, and insights from our worldwide community of sustainable development practitioners.</p>
+            <div class="blog-controls">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search blog posts...">
+                    <button type="button">Search</button>
+                </div>
+                <div class="filter-controls">
+                    <label for="category-filter">Filter by:</label>
+                    <select id="category-filter">
+                        <option value="all">All Categories</option>
+                        <option value="energy">Energy</option>
+                        <option value="water">Water</option>
+                        <option value="agriculture">Agriculture</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="education">Education</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-post">
+        <div class="container">
+            <article class="featured-article">
+                <div class="featured-image">
+                    <img src="public/img/featured-blog-placeholder.jpg" alt="Solar-Magnetic Hybrid Systems">
+                </div>
+                <div class="featured-content">
+                    <span class="category">Energy</span>
+                    <h3 id="post1">Implementing Solar-Magnetic Hybrid Systems in Rural Malawi</h3>
+                    <p class="meta">By Jane Doe | June 15, 2023</p>
+                    <p class="excerpt">Our team recently completed a pilot project combining solar panels with magnetic generators to provide consistent power to a rural health clinic in Malawi. The hybrid approach addresses the limitations of each technology when used alone.</p>
+                    <a href="blog-post.html?id=1" class="btn-secondary">Read Full Article</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="blog-grid">
+        <div class="container">
+            <h3>Recent Posts</h3>
+            <div class="posts-grid">
+                <article class="blog-post-card">
+                    <div class="post-image">
+                        <img src="public/img/blog-water-placeholder.jpg" alt="Water Filtration">
+                    </div>
+                    <div class="post-content">
+                        <span class="category">Water</span>
+                        <h4 id="post2">Local Materials for Water Filtration: A Case Study</h4>
+                        <p class="meta">By John Smith | May 30, 2023</p>
+                        <p class="excerpt">Using clay, sand, and charcoal from the region, we constructed a filtration system that reduced contaminants by 95% in village drinking water.</p>
+                        <a href="blog-post.html?id=2" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card">
+                    <div class="post-image">
+                        <img src="public/img/blog-agriculture-placeholder.jpg" alt="Sustainable Farming">
+                    </div>
+                    <div class="post-content">
+                        <span class="category">Agriculture</span>
+                        <h4>Drought-Resistant Crop Rotation Techniques</h4>
+                        <p class="meta">By Maria Garcia | May 15, 2023</p>
+                        <p class="excerpt">Our experiments with indigenous crop varieties and rotation patterns have shown promising results in areas affected by irregular rainfall patterns.</p>
+                        <a href="blog-post.html?id=3" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card">
+                    <div class="post-image">
+                        <img src="public/img/blog-education-placeholder.jpg" alt="Education">
+                    </div>
+                    <div class="post-content">
+                        <span class="category">Education</span>
+                        <h4>Solar-Powered Tablets in Rural Schools: One Year Later</h4>
+                        <p class="meta">By Robert Mwangi | April 28, 2023</p>
+                        <p class="excerpt">Follow-up research on our educational technology project shows significant improvements in literacy and numeracy among participating students.</p>
+                        <a href="blog-post.html?id=4" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card">
+                    <div class="post-image">
+                        <img src="public/img/blog-energy-placeholder.jpg" alt="Energy Solutions">
+                    </div>
+                    <div class="post-content">
+                        <span class="category">Energy</span>
+                        <h4>Micro-Grid Development: Community Ownership Models</h4>
+                        <p class="meta">By Sarah Johnson | April 10, 2023</p>
+                        <p class="excerpt">Our research into community-owned micro-grids reveals important factors for sustainability and successful governance structures.</p>
+                        <a href="blog-post.html?id=5" class="read-more">Read More</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">Next »</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contribute-blog">
+        <div class="container">
+            <h3>Share Your Experience</h3>
+            <p>Are you working on sustainable development projects? Have you implemented research in the field? Share your story with our global community.</p>
+            <a href="blog-submit.html" class="btn-primary">Submit a Blog Post</a>
+            <p class="login-note"><small>Note: You must be <a href="login.html">logged in</a> to submit content.</small></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Global Development Research Portal</h3>
+                    <p>Making sustainable development knowledge accessible to those who need it most.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@devresearchportal.org</p>
+                    <p>Follow us on social media</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">Twitter</a>
+                        <a href="#" class="social-icon">Facebook</a>
+                        <a href="#" class="social-icon">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Global Development Research Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="public/js/main.js"></script>
+</body>
+</html> 
