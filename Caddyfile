@@ -1,0 +1,27 @@
+:80 {
+    root * /usr/share/caddy
+    file_server
+    encode gzip
+
+    header {
+        # Enable HTTP Strict Transport Security (HSTS)
+        Strict-Transport-Security "max-age=31536000;"
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
+        X-Content-Type-Options "nosniff"
+        # Disallow the site to be rendered within a frame on a foreign domain (clickjacking protection)
+        X-Frame-Options "SAMEORIGIN"
+        # Set CSP to limit resources to same origin, prevent eval() and inline scripts
+        Content-Security-Policy "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;"
+        # Remove Server header
+        -Server
+    }
+
+    # Cache static assets
+    @static {
+        path *.ico *.css *.js *.gif *.jpg *.jpeg *.png *.svg *.woff *.woff2
+    }
+    
+    header @static Cache-Control "max-age=31536000"
+}

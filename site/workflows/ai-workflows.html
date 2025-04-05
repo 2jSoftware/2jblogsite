@@ -3,1491 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced n8n AI Workflows | Ethical Generalized Agents</title>
+    <title>AI Workflows Explained | 2jSoftware</title>
+    <link rel="stylesheet" href="../css/style.css"> <!-- Link to the main site's CSS -->
     <style>
-        /* Base Styles */
-        :root {
-            --primary: #0088FF;
-            --primary-dark: #0066CC;
-            --secondary: #6F42C1;
-            --accent: #FF5500;
-            --light: #F8F9FA;
-            --dark: #212529;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
-            --text: #333;
-            --border-radius: 8px;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* Re-use styles from the other sub-page for consistency */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            background-attachment: fixed;
-            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
-        
-        /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(120deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .subpage-header {
+            background-color: var(--card-bg-color);
+            padding: 4rem 0 2rem;
             text-align: center;
+            border-bottom: 1px solid var(--border-color);
         }
-        
-        h2 {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
-            margin-top: 2rem;
-            position: relative;
-            padding-bottom: 10px;
+        .subpage-header h1 {
+            color: var(--primary-color);
+            font-size: clamp(2rem, 4vw, 3rem);
         }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        
-        h3 {
-            font-size: 1.8rem;
-            color: var(--secondary);
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Layout */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        section {
+        .subpage-content {
             padding: 4rem 0;
         }
-        
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 -15px;
+        .content-section {
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
         }
-        
-        .col {
-            flex: 1;
-            padding: 0 15px;
-            min-width: 300px;
-        }
-        
-        /* Components */
-        .card {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-        }
-        
-        .card.featured::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--accent);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: var(--primary);
-            color: white;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            text-align: center;
-        }
-        
-        .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-secondary {
-            background: var(--secondary);
-        }
-        
-        .btn-secondary:hover {
-            background: #5a35a0;
-        }
-        
-        .btn-accent {
-            background: var(--accent);
-        }
-        
-        .btn-accent:hover {
-            background: #e04d00;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding: 0;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 136, 255, 0.05) 0%, rgba(111, 66, 193, 0.05) 100%);
-            z-index: -1;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            text-align: center;
-            margin: 0 auto;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        /* Features */
-        .features {
-            background: white;
-        }
-        
-        .feature-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--light);
+        .content-section h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
-            color: var(--primary);
-            font-size: 2rem;
-            transition: var(--transition);
+            text-align: left;
         }
-        
-        .card:hover .feature-icon {
-            background: var(--primary);
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        /* Workflow Section */
-        .workflow-container {
-            position: relative;
-            padding-left: 3rem;
-            margin-top: 3rem;
-        }
-        
-        .workflow-step {
-            position: relative;
-            padding-bottom: 3rem;
-        }
-        
-        .workflow-step::before {
-            content: '';
-            position: absolute;
-            left: -3rem;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: var(--primary);
-        }
-        
-        .workflow-step::after {
-            content: attr(data-step);
-            position: absolute;
-            left: -3.65rem;
-            top: 0;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        .workflow-step:last-child::before {
-            height: 0;
-        }
-        
-        /* Examples Section */
-        .example {
-            margin-top: 2rem;
-        }
-        
-        .tabs {
-            display: flex;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #e9ecef;
-            overflow-x: auto;
-            padding-bottom: 1px;
-        }
-        
-        .tab {
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            margin-bottom: -2px;
-            white-space: nowrap;
-            transition: var(--transition);
-        }
-        
-        .tab.active {
-            border-bottom-color: var(--primary);
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        .tab-content {
-            padding: 1.5rem;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .code-block {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            font-family: 'Courier New', Courier, monospace;
-            line-height: 1.5;
-        }
-        
-        /* Animation classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Glowing dots */
-        .glow-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-        
-        .glow-dot {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle at center, rgba(0, 136, 255, 0.6) 0%, rgba(0, 136, 255, 0) 70%);
-            animation: float 8s infinite ease-in-out;
-        }
-        
-        .glow-dot:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            width: 300px;
-            height: 300px;
-            animation-delay: 0s;
-        }
-        
-        .glow-dot:nth-child(2) {
-            top: 60%;
-            left: 80%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle at center, rgba(111, 66, 193, 0.6) 0%, rgba(111, 66, 193, 0) 70%);
-            animation-delay: 2s;
-        }
-        
-        .glow-dot:nth-child(3) {
-            top: 80%;
-            left: 30%;
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle at center, rgba(255, 85, 0, 0.6) 0%, rgba(255, 85, 0, 0) 70%);
-            animation-delay: 4s;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(20px, 20px);
-            }
-            100% {
-                transform: translate(0, 0);
-            }
-        }
-        
-        /* Header and navigation */
-        header {
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-        }
-        
-        header.scrolled {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--accent);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text);
-        }
-        
-        /* Ethical Framework Section */
-        .principles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .principle-card {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 1.5rem;
-            transition: var(--transition);
-            border-top: 4px solid var(--primary);
-        }
-        
-        .principle-card:nth-child(2) {
-            border-top-color: var(--secondary);
-        }
-        
-        .principle-card:nth-child(3) {
-            border-top-color: var(--accent);
-        }
-        
-        .principle-card:nth-child(4) {
-            border-top-color: var(--success);
-        }
-        
-        .principle-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .principle-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-        
-        /* Implementation Examples */
-        .implementation-example {
-            margin-top: 3rem;
-        }
-        
-        .code-preview {
-            background: #1e1e1e;
-            border-radius: var(--border-radius);
-            overflow: hidden;
+        .content-section h3 {
+            color: var(--primary-color);
             margin-top: 1.5rem;
-        }
-        
-        .code-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #333;
-            padding: 0.75rem 1rem;
-            color: white;
-        }
-        
-        .code-tabs {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .code-tab {
-            padding: 0.25rem 0.5rem;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-        
-        .code-tab.active {
-            background: #555;
-        }
-        
-        .code-content {
-            padding: 1.5rem;
-            overflow-x: auto;
-            color: #f8f8f2;
-            font-family: 'Courier New', Courier, monospace;
-            line-height: 1.5;
-        }
-        
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .col {
-                flex: 100%;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background: white;
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
-                transition: var(--transition);
-                z-index: 101;
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .mobile-menu-button {
-                display: block;
-                z-index: 102;
-            }
-        }
-
-        /* Image gallery */
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .gallery-item {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .gallery-caption {
-            padding: 1rem;
-            background: white;
-        }
-        
-        .gallery-caption h4 {
             margin-bottom: 0.5rem;
-            color: var(--primary-dark);
         }
-
-        /* Workflow diagram */
-        .workflow-diagram {
-            width: 100%;
-            margin: 3rem 0;
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow);
+        .content-section ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
         }
-        
-        .diagram-nodes {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            position: relative;
-            padding: 2rem 0;
+        .content-section li {
+            margin-bottom: 0.5rem;
         }
-        
-        .diagram-node {
-            position: relative;
-            width: 180px;
-            padding: 1rem;
-            background: white;
-            border: 2px solid var(--primary);
-            border-radius: var(--border-radius);
-            text-align: center;
-            z-index: 2;
+        .content-section code {
+            background-color: var(--bg-color);
+            color: var(--accent-color);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: monospace;
         }
-        
-        .diagram-node.ai-node {
-            border-color: var(--secondary);
-            background: rgba(111, 66, 193, 0.1);
-        }
-        
-        .diagram-node.output-node {
-            border-color: var(--accent);
-            background: rgba(255, 85, 0, 0.1);
-        }
-        
-        .diagram-lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        
-        .diagram-arrow {
-            position: absolute;
-            width: 50px;
-            height: 2px;
-            background: var(--primary-dark);
-        }
-        
-        .diagram-arrow::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: -4px;
-            width: 10px;
-            height: 10px;
-            border-top: 2px solid var(--primary-dark);
-            border-right: 2px solid var(--primary-dark);
-            transform: rotate(45deg);
-        }
-
-        /* Call to action */
-        .cta-section {
-            background: linear-gradient(120deg, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-            padding: 5rem 0;
-            margin-top: 4rem;
-        }
-        
-        .cta-section h2 {
-            color: white;
-        }
-        
-        .cta-section h2::after {
-            background: white;
-            margin: 0 auto;
-            left: 0;
-            right: 0;
-        }
-        
-        .cta-section p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        
-        .cta-btn {
-            background: white;
-            color: var(--primary);
-            font-size: 1.1rem;
-            padding: 12px 30px;
-        }
-        
-        .cta-btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--primary-dark);
-        }
-
-        /* Footer */
-        footer {
-            background: white;
-            padding: 3rem 0;
-            text-align: center;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-        
-        .footer-links a {
-            color: var(--text);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-        
-        .copyright {
+        .back-link {
+            display: inline-block;
             margin-top: 2rem;
-            color: #6c757d;
-            font-size: 0.9rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+        .workflow-diagram {
+            background-color: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            text-align: center; /* Center diagram if needed */
+            font-family: monospace;
+            line-height: 1.8;
+            border: 1px dashed var(--border-color);
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
+    <header class="subpage-header">
         <div class="container">
-            <nav>
-                <a href="#" class="logo">AI<span>Flow</span>Hub</a>
-                <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#workflows">Workflows</a></li>
-                    <li><a href="#examples">Examples</a></li>
-                    <li><a href="#ethics">Ethics</a></li>
-                    <li><a href="#implementation">Implementation</a></li>
-                </ul>
-                <button class="mobile-menu-button">☰</button>
-            </nav>
+            <h1>Demystifying AI Workflows: From Simple Steps to Smart Systems</h1>
+            <p>Understand how AI integrates into processes to drive intelligent automation.</p>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="glow-container">
-            <div class="glow-dot"></div>
-            <div class="glow-dot"></div>
-            <div class="glow-dot"></div>
-        </div>
+    <main class="subpage-content">
         <div class="container">
-            <div class="hero-content">
-                <h1>Advanced n8n AI Workflows</h1>
-                <p>Discover cutting-edge implementations of AI-powered workflow automation with ethical frameworks for developing generalized agents</p>
-                <div class="cta-buttons">
-                    <a href="#workflows" class="btn">Explore Workflows</a>
-                    <a href="#implementation" class="btn btn-secondary">Implementation Guide</a>
-                </div>
+
+            <div class="content-section">
+                <h2>What Exactly IS an AI Workflow?</h2>
+                <p>Imagine a standard business process, like handling a customer inquiry. It involves steps: receive email, identify topic, find answer, draft reply, send email. A traditional workflow might automate parts of this, maybe routing the email.</p>
+                <p>An <strong>AI Workflow</strong> enhances this by embedding intelligence. Instead of just routing, the AI can:</p>
+                <ul>
+                    <li><strong>Understand the email's intent:</strong> Is it a complaint, a sales question, or feedback?</li>
+                    <li><strong>Extract key information:</strong> What product are they asking about? What's their customer ID?</li>
+                    <li><strong>Consult knowledge bases:</strong> Find the relevant answer or policy automatically.</li>
+                    <li><strong>Draft a contextual reply:</strong> Generate a human-like response tailored to the specific inquiry.</li>
+                    <li><strong>Make decisions:</strong> Decide if the query needs human escalation based on complexity or sentiment.</li>
+                </ul>
+                <p>Essentially, an AI workflow is a sequence of automated tasks where one or more steps involve AI models to perform tasks that previously required human cognition, like understanding language, making judgments, recognizing patterns, or generating content.</p>
             </div>
+
+            <div class="content-section">
+                <h2>Foundational Workflow Examples (AI in Action)</h2>
+                <p>These examples illustrate common ways AI is integrated into everyday business workflows:</p>
+
+                <h3>1. Automated Email Categorization & Summarization:</h3>
+                <p>Instead of manually sorting an overflowing inbox, an AI workflow can read, categorize, and summarize incoming emails.</p>
+                <div class="workflow-diagram">
+                    [Email Received] -> [AI Model: Read & Understand] -> [Categorize: Support/Sales/Spam] -> [AI Model: Summarize Key Points] -> [Route to Team/Folder & Add Summary]
+                </div>
+                <ul>
+                    <li><strong>AI's Role:</strong> Natural Language Processing (NLP) to understand text, classification to sort, summarization to condense.</li>
+                    <li><strong>Benefit:</strong> Saves hours of manual sorting, ensures important emails aren't missed, provides quick context.</li>
+                </ul>
+
+                <h3>2. Smart Form Processing:</h3>
+                <p>Go beyond simple form submission. AI can validate and extract data even from unstructured inputs.</p>
+                <div class="workflow-diagram">
+                    [Form Submitted] -> [AI Model: Extract Structured Data (e.g., Name, Company, Request)] -> [Validate Data Quality] -> [Update CRM Record] -> [Notify Sales Rep]
+                </div>
+                <ul>
+                    <li><strong>AI's Role:</strong> Information extraction, potentially data validation against known patterns.</li>
+                    <li><strong>Benefit:</strong> Reduces manual data entry errors, ensures cleaner data in your CRM, speeds up lead processing.</li>
+                </ul>
+
+                <h3>3. Intelligent Content Tagging:</h3>
+                <p>Automatically tag blog posts, documents, or images based on their content for better organization and searchability.</p>
+                <div class="workflow-diagram">
+                    [New Document Uploaded] -> [AI Model: Analyze Content/Image] -> [Generate Relevant Tags (e.g., 'AI', 'Marketing', 'Case Study')] -> [Apply Tags in CMS/DMS]
+                </div>
+                <ul>
+                    <li><strong>AI's Role:</strong> Content analysis (text or image), keyword/topic extraction.</li>
+                    <li><strong>Benefit:</strong> Improves knowledge management, makes content easier to find, potentially aids SEO.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>Advanced AI Workflow Concepts</h2>
+                <p>Building on the basics, AI enables more complex, adaptive, and powerful workflows:</p>
+                <ul>
+                    <li><strong>Multi-Step Reasoning & Problem Solving:</strong> AI agents break down complex requests (e.g., "Plan a marketing campaign for product X targeting small businesses") into sub-tasks, execute them, and synthesize a final plan.</li>
+                    <li><strong>Autonomous Agents with Tools:</strong> AI workflows equipped with 'tools' (like the ability to search the web, access specific APIs, or run code) can perform actions in the real world, not just process data. Example: An agent that monitors competitor pricing and automatically suggests adjustments.</li>
+                    <li><strong>Personalized Communication Generation:</strong> AI crafts emails, reports, or messages tailored to individual recipients based on their history, preferences, and the current context.</li>
+                    <li><strong>Predictive Workflows:</strong> Trigger actions based on AI predictions. Example: Proactively reach out to a customer if AI predicts a high churn risk based on their usage patterns.</li>
+                    <li><strong>Human-in-the-Loop Escalation:</strong> Design workflows where AI handles most cases but intelligently flags complex or ambiguous situations for human review, ensuring quality and control.</li>
+                </ul>
+                 <p>Platforms like <code>n8n</code> are excellent for building these workflows, visually connecting different services and embedding AI logic using nodes that interact with models like GPT or Gemini.</p>
+           </div>
+
+            <div class="content-section">
+                <h2>Building Effective AI Workflows with 2jSoftware</h2>
+                <p>We help businesses design, build, and deploy intelligent workflows that deliver real results. Our approach focuses on:</p>
+                <ul>
+                    <li><strong>Understanding Your Goals:</strong> We start by identifying the core business problems you want to solve or the opportunities you want to seize.</li>
+                    <li><strong>Process Analysis:</strong> Mapping out existing processes to pinpoint where AI can provide the most leverage.</li>
+                    <li><strong>Choosing the Right AI:</strong> Selecting the appropriate AI models and techniques (classification, extraction, generation, agents) for each step.</li>
+                    <li><strong>Robust Implementation:</strong> Building reliable and scalable workflows using tools like n8n, ensuring proper error handling and monitoring.</li>
+                    <li><strong>Iterative Improvement:</strong> Measuring the impact of AI workflows and continuously refining them for better performance.</li>
+                </ul>
+                <p>Whether you're looking to automate simple tasks or build sophisticated AI-driven systems, we have the expertise to guide you.</p>
+            </div>
+
+            <a href="../index.html#projects" class="back-link">&larr; Back to Main Site</a>
         </div>
-    </section>
+    </main>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
+    <footer class="footer">
         <div class="container">
-            <h2>Transformative Capabilities</h2>
-            <p>Leverage n8n's powerful framework to build AI workflows that push boundaries while maintaining ethical principles</p>
-            
-            <div class="row">
-                <div class="col">
-                    <div class="card fade-in">
-                        <div class="feature-icon">🧠</div>
-                        <h3>Multimodal Processing</h3>
-                        <p>Combine vision, text, and data analysis capabilities for comprehensive AI systems that can perceive and understand complex inputs.</p>
-                    </div>
+            <div class="footer__content">
+                <div class="footer__info">
+                    <p>&copy; 2025 2jSoftware dba Yanke Software LLC. All rights reserved.</p>
                 </div>
-                <div class="col">
-                    <div class="card fade-in">
-                        <div class="feature-icon">🔒</div>
-                        <h3>Privacy-Conscious Design</h3>
-                        <p>Implement AI workflows that respect data privacy by design, with schema-only processing and secure validation mechanisms.</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card fade-in">
-                        <div class="feature-icon">👥</div>
-                        <h3>Multi-Agent Architecture</h3>
-                        <p>Create sophisticated systems with specialized agents coordinated by gatekeeper nodes for complex problem solving.</p>
-                    </div>
+                <div class="footer__links">
+                    <!-- Keep footer links consistent -->
                 </div>
             </div>
-            
-            <div class="row">
-                <div class="col">
-                    <div class="card fade-in">
-                        <div class="feature-icon">📊</div>
-                        <h3>Explainable Outputs</h3>
-                        <p>Build transparency into your workflows with detailed explanations of AI decisions and recommendations.</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card fade-in">
-                        <div class="feature-icon">🔄</div>
-                        <h3>Adaptive Learning</h3>
-                        <p>Implement continuous improvement mechanisms that allow systems to learn from user feedback and new data.</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card fade-in">
-                        <div class="feature-icon">🌐</div>
-                        <h3>Enterprise Integration</h3>
-                        <p>Seamlessly connect AI workflows with existing enterprise systems, databases, and APIs.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Workflows Section -->
-    <section id="workflows" class="workflows">
-        <div class="container">
-            <h2>Groundbreaking Workflow Patterns</h2>
-            <p>Explore three innovative n8n AI workflow architectures that demonstrate the path toward generalized agents</p>
-            
-            <div class="row">
-                <div class="col">
-                    <div class="card featured fade-in">
-                        <h3>Multimodal Passport Validation</h3>
-                        <p>This workflow showcases advanced perception capabilities by using multimodal LLMs to analyze portrait images against complex governmental criteria.</p>
-                        
-                        <div class="workflow-container">
-                            <div class="workflow-step" data-step="1">
-                                <h4>Image Input</h4>
-                                <p>The workflow begins by receiving a passport photo either as a file upload or URL reference.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="2">
-                                <h4>Image Preprocessing</h4>
-                                <p>The image is preprocessed to ensure consistent format and quality for AI analysis.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="3">
-                                <h4>Task Distribution</h4>
-                                <p>The gatekeeper formulates specific instructions for each specialized agent based on their capabilities.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="4">
-                                <h4>Parallel Processing</h4>
-                                <p>Multiple specialized agents work simultaneously on different aspects of the problem.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="5">
-                                <h4>Results Collection</h4>
-                                <p>The outputs from all specialized agents are collected and passed back to the gatekeeper.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="6">
-                                <h4>Integration & Synthesis</h4>
-                                <p>The gatekeeper integrates the various outputs into a coherent, comprehensive response.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="7">
-                                <h4>Quality Assurance</h4>
-                                <p>The final response is validated against the original request to ensure all aspects were addressed.</p>
-                            </div>
-                        </div>
-                        
-                        <a href="#examples" class="btn btn-accent">View Architecture</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Workflow Diagram Section -->
-    <section class="workflow-diagram-section">
-        <div class="container">
-            <h2>Multi-Agent System Architecture</h2>
-            <p>Visual representation of how specialized AI agents collaborate within a hierarchical structure</p>
-            
-            <div class="workflow-diagram fade-in">
-                <div class="diagram-nodes">
-                    <div class="diagram-node">User Request</div>
-                    <div class="diagram-node ai-node">Gatekeeper Agent</div>
-                    <div class="diagram-node ai-node">Data Analysis Agent</div>
-                    <div class="diagram-node ai-node">Content Generation Agent</div>
-                    <div class="diagram-node ai-node">Research Agent</div>
-                    <div class="diagram-node output-node">Integrated Response</div>
-                    
-                    <!-- This would typically be implemented with SVG lines or canvas -->
-                    <div class="diagram-lines">
-                        <!-- Added via JS in production -->
-                    </div>
-                </div>
-            </div>
-            
-            <p>The multi-agent architecture enables complex problems to be broken down and processed by specialized components, with a coordinator agent managing the overall flow and ensuring coherent outputs.</p>
-        </div>
-    </section>
-
-    <!-- Ethics Framework Section -->
-    <section id="ethics" class="ethics">
-        <div class="container">
-            <h2>Ethical Implementation Framework</h2>
-            <p>Core principles for developing responsible AI workflows that prioritize human well-being</p>
-            
-            <div class="principles">
-                <div class="principle-card fade-in">
-                    <h4>Transparency</h4>
-                    <p>All AI-powered workflows should provide clear explanations of their decision-making processes, sources of information, and limitations.</p>
-                    <ul>
-                        <li>Explainable outputs</li>
-                        <li>Decision documentation</li>
-                        <li>Source attribution</li>
-                        <li>Confidence indicators</li>
-                    </ul>
-                </div>
-                
-                <div class="principle-card fade-in">
-                    <h4>Privacy by Design</h4>
-                    <p>AI systems should be designed with data privacy as a foundational principle, minimizing data access and storage.</p>
-                    <ul>
-                        <li>Schema-only processing</li>
-                        <li>Data minimization</li>
-                        <li>Secure processing</li>
-                        <li>Access controls</li>
-                    </ul>
-                </div>
-                
-                <div class="principle-card fade-in">
-                    <h4>Human Oversight</h4>
-                    <p>AI workflows should maintain appropriate human involvement in consequential decisions and provide override mechanisms.</p>
-                    <ul>
-                        <li>Approval workflows</li>
-                        <li>Confidence thresholds</li>
-                        <li>Audit logging</li>
-                        <li>Appeal processes</li>
-                    </ul>
-                </div>
-                
-                <div class="principle-card fade-in">
-                    <h4>Continuous Evaluation</h4>
-                    <p>AI systems should be regularly monitored for performance, bias, and alignment with intended purpose.</p>
-                    <ul>
-                        <li>Outcome metrics</li>
-                        <li>Bias detection</li>
-                        <li>Feedback incorporation</li>
-                        <li>Version control</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Examples Section -->
-    <section id="examples" class="examples">
-        <div class="container">
-            <h2>Real-World Implementation Examples</h2>
-            <p>Case studies of advanced n8n AI workflows in production environments</p>
-            
-            <div class="tabs">
-                <div class="tab active" data-target="example1">Healthcare Data Processing</div>
-                <div class="tab" data-target="example2">Financial Services</div>
-                <div class="tab" data-target="example3">Competitor Research</div>
-            </div>
-            
-            <div class="example" id="example1">
-                <div class="card fade-in">
-                    <h3>Healthcare Data Processing with Regulatory Compliance</h3>
-                    <p>This implementation showcases how n8n workflows can be designed to operate within strict regulatory frameworks while delivering AI benefits.</p>
-                    
-                    <div class="row">
-                        <div class="col">
-                            <h4>Challenge</h4>
-                            <p>Process fragmented medical data while maintaining HIPAA compliance and ensuring patient privacy.</p>
-                            
-                            <h4>Solution</h4>
-                            <p>A RAG (Retrieval-Augmented Generation) system that:</p>
-                            <ul>
-                                <li>Implements a data lakehouse architecture with robust access controls</li>
-                                <li>Uses real-time data ingestion with compliance verification</li>
-                                <li>Maintains comprehensive audit trails for all AI interactions</li>
-                                <li>Provides clear documentation of AI decision boundaries</li>
-                            </ul>
-                            
-                            <h4>Results</h4>
-                            <p>The system successfully improved information retrieval and customer service while maintaining regulatory compliance. Processing time reduced by 68% while maintaining 100% compliance with privacy regulations.</p>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="code-preview">
-                                <div class="code-header">
-                                    <span>Implementation Highlights</span>
-                                    <div class="code-tabs">
-                                        <div class="code-tab active">n8n</div>
-                                    </div>
-                                </div>
-                                <div class="code-content">
-                                    // Healthcare Data Workflow
-                                    
-                                    // 1. Secure Data Ingestion Node
-                                    // Uses encrypted connections and verification
-                                    
-                                    // 2. HIPAA Compliance Check Node
-                                    // Validates all data against privacy requirements
-                                    
-                                    // 3. AI Agent with Privacy Constraints
-                                    // Limited to necessary data only
-                                    
-                                    // 4. Comprehensive Audit Logging
-                                    // Records all access and processing
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="example" id="example2" style="display: none;">
-                <div class="card fade-in">
-                    <h3>Financial Services Multi-Agent System</h3>
-                    <p>A conversational AI for banking that maintains regulatory compliance while delivering personalized customer service.</p>
-                    
-                    <div class="row">
-                        <div class="col">
-                            <h4>Challenge</h4>
-                            <p>Create an AI banking assistant that can handle complex financial queries while maintaining stringent security and compliance.</p>
-                            
-                            <h4>Solution</h4>
-                            <p>A multi-agent approach that:</p>
-                            <ul>
-                                <li>Implements rigorous testing protocols for all agent interactions</li>
-                                <li>Continuously monitors agent outputs for compliance</li>
-                                <li>Seamlessly integrates with existing compliance frameworks</li>
-                                <li>Maintains clear audit trails for regulatory review</li>
-                            </ul>
-                            
-                            <h4>Results</h4>
-                            <p>The system reduced customer support costs by 42% while increasing satisfaction scores. Compliance incidents dropped to zero while query response time improved by 78%.</p>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="code-preview">
-                                <div class="code-header">
-                                    <span>Architecture Overview</span>
-                                    <div class="code-tabs">
-                                        <div class="code-tab active">n8n</div>
-                                    </div>
-                                </div>
-                                <div class="code-content">
-                                    // Financial Services Workflow
-                                    
-                                    // 1. Customer Request Node
-                                    // Authenticates and classifies incoming queries
-                                    
-                                    // 2. Gatekeeper Agent Node
-                                    // Routes to appropriate specialist agents
-                                    
-                                    // 3. Specialized Agent Nodes:
-                                    //   - Account Information Agent
-                                    //   - Transaction Analysis Agent
-                                    //   - Financial Advisory Agent
-                                    
-                                    // 4. Compliance Verification Node
-                                    // Ensures all responses meet regulatory requirements
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="example" id="example3" style="display: none;">
-                <div class="card fade-in">
-                    <h3>Automated Competitor Research Workflow</h3>
-                    <p>A sophisticated multi-agent system that automates competitive intelligence gathering and analysis.</p>
-                    
-                    <div class="row">
-                        <div class="col">
-                            <h4>Challenge</h4>
-                            <p>Streamline the process of gathering, analyzing, and organizing competitive intelligence from multiple sources.</p>
-                            
-                            <h4>Solution</h4>
-                            <p>A comprehensive research automation system that:</p>
-                            <ul>
-                                <li>Uses HTTP request tools to gather information from diverse sources</li>
-                                <li>Implements specialized agents for different analysis tasks</li>
-                                <li>Organizes findings in structured knowledge repositories</li>
-                                <li>Generates insightful competitive analysis reports</li>
-                            </ul>
-                            
-                            <h4>Results</h4>
-                            <p>Research time reduced by 85% while analysis quality improved by 64% according to stakeholder ratings. The system identified 37% more competitive insights than manual processes.</p>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="code-preview">
-                                <div class="code-header">
-                                    <span>Workflow Components</span>
-                                    <div class="code-tabs">
-                                        <div class="code-tab active">n8n</div>
-                                    </div>
-                                </div>
-                                <div class="code-content">
-                                    // Competitor Research Workflow
-                                    
-                                    // 1. Data Collection Nodes
-                                    // Gather information from websites, news, and social media
-                                    
-                                    // 2. Content Analysis Agent Node
-                                    // Extracts key information and insights
-                                    
-                                    // 3. Trend Identification Agent Node
-                                    // Identifies patterns and strategic implications
-                                    
-                                    // 4. Knowledge Base Integration Node
-                                    // Organizes findings in structured repository
-                                    
-                                    // 5. Report Generation Node
-                                    // Creates comprehensive competitive analysis
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Implementation Section -->
-    <section id="implementation" class="implementation">
-        <div class="container">
-            <h2>Technical Implementation Guide</h2>
-            <p>Practical steps for building advanced AI workflows in n8n</p>
-            
-            <div class="implementation-example">
-                <h3>Multimodal Passport Validation Workflow</h3>
-                <p>Step-by-step guide to implementing the multimodal validation workflow</p>
-                
-                <div class="code-preview">
-                    <div class="code-header">
-                        <span>Implementation Code</span>
-                        <div class="code-tabs">
-                            <div class="code-tab active">JavaScript</div>
-                        </div>
-                    </div>
-                    <div class="code-content">
-/**
- * Technical Implementation for Multimodal Passport Validation Workflow
- * 
- * This code represents a prototype implementation of the Multimodal Passport Validation
- * Workflow discussed in the analysis. It demonstrates how to structure a n8n workflow
- * that integrates multimodal AI capabilities for image validation using Google Gemini.
- */
-
-// Step 1: Manual Trigger or Webhook Setup
-const triggerNode = {
-  name: "Trigger",
-  type: "n8n-nodes-base.manualTrigger",
-  position: [100, 300],
-  parameters: {}
-};
-
-// Step 2: Image Source Configuration
-const imageSourceNode = {
-  name: "Image Source",
-  type: "n8n-nodes-base.set",
-  parameters: {
-    values: {
-      string: [
-        {
-          name: "imageUrl",
-          value: "={{ $json.imageUrl }}" // Dynamic image URL from input
-        },
-        {
-          name: "validationCriteria",
-          value: `
-            - Photo must be taken within the last month
-            - Subject must face the camera directly with a neutral expression
-            - Both ears must be visible
-            - No head coverings except for religious purposes
-            - Plain, light-colored background
-            - No shadows on face or background
-            - No sunglasses or tinted glasses
-            - Eyes must be open and clearly visible
-            - Photo size must be 35mm x 45mm
-          `
-        }
-      ]
-    }
-  }
-};
-
-// Step 3: Configure the AI Agent with Gemini
-const aiAgentNode = {
-  name: "Passport Validator",
-  type: "n8n-nodes-langchain.agent",
-  parameters: {
-    options: {
-      systemPrompt: `
-        You are a passport photo validation assistant. Your task is to analyze the given image and determine 
-        if it meets the requirements for a valid passport photo according to the following criteria:
-        
-        {{ $json.validationCriteria }}
-        
-        Analyze the image thoroughly and respond with a structured assessment.
-      `
-    }
-  }
-};
-
-// More implementation details...
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col">
-                        <h4>Key Components</h4>
-                        <ul>
-                            <li>Manual or Webhook trigger node for starting the workflow</li>
-                            <li>Image processing nodes for consistent formatting</li>
-                            <li>AI Agent node with Google Gemini for multimodal analysis</li>
-                            <li>Structured output parser for consistent results</li>
-                            <li>Conditional nodes for branching based on validation results</li>
-                            <li>Audit logging for compliance and improvement</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="col">
-                        <h4>Ethical Considerations</h4>
-                        <ul>
-                            <li>Obtain clear user consent before processing personal images</li>
-                            <li>Process images transiently with appropriate retention policies</li>
-                            <li>Provide detailed explanations for rejections</li>
-                            <li>Regularly test with diverse photos to prevent bias</li>
-                            <li>Implement human review process for edge cases</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="cta-buttons" style="margin-top: 2rem;">
-                <a href="#" class="btn btn-secondary">Download Complete Guide</a>
-                <a href="#" class="btn">View More Examples</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery">
-        <div class="container">
-            <h2>Visual Showcase</h2>
-            <p>Examples of n8n AI workflows in action</p>
-            
-            <div class="image-gallery">
-                <div class="gallery-item fade-in">
-                    <img src="/api/placeholder/400/320" alt="Multimodal validation workflow interface showing passport photo analysis">
-                    <div class="gallery-caption">
-                        <h4>Passport Validation Interface</h4>
-                        <p>User interface showing results of multimodal passport photo validation</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="/api/placeholder/400/320" alt="SQL Agent workflow showing natural language query being processed">
-                    <div class="gallery-caption">
-                        <h4>SQL Agent Processing</h4>
-                        <p>Natural language query being transformed into SQL by privacy-conscious agent</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="/api/placeholder/400/320" alt="Multi-agent system visualization showing coordinated processing">
-                    <div class="gallery-caption">
-                        <h4>Multi-Agent Coordination</h4>
-                        <p>Visualization of hierarchical agent system working on complex task</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Start Building Advanced AI Workflows Today</h2>
-            <p>Leverage the power of n8n and AI to transform your organization with ethical, powerful automation</p>
-            <a href="#" class="btn cta-btn">Get Started</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <h3>AIFlowHub</h3>
-            <p>Advanced n8n AI Workflows for Ethical Generalized Agents</p>
-            
-            <div class="footer-links">
-                <a href="#features">Features</a>
-                <a href="#workflows">Workflows</a>
-                <a href="#examples">Examples</a>
-                <a href="#ethics">Ethics</a>
-                <a href="#implementation">Implementation</a>
-            </div>
-            
-            <p class="copyright">© 2025 AIFlowHub. All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- JavaScript -->
-    <script>
-        // Dynamic fade-in effect for elements as they come into view
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const menuButton = document.querySelector('.mobile-menu-button');
-            const navLinks = document.querySelector('.nav-links');
-            
-            if (menuButton) {
-                menuButton.addEventListener('click', function() {
-                    navLinks.classList.toggle('active');
-                });
-            }
-            
-            // Tab functionality
-            const tabs = document.querySelectorAll('.tab');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const targetId = this.getAttribute('data-target');
-                    
-                    // Hide all examples
-                    document.querySelectorAll('.example').forEach(example => {
-                        example.style.display = 'none';
-                    });
-                    
-                    // Show the target example
-                    document.getElementById(targetId).style.display = 'block';
-                    
-                    // Update active tab
-                    tabs.forEach(t => {
-                        t.classList.remove('active');
-                    });
-                    
-                    this.classList.add('active');
-                });
-            });
-            
-            // Fade-in animation
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const fadeInObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        fadeInObserver.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            fadeElements.forEach(element => {
-                fadeInObserver.observe(element);
-            });
-            
-            // Header scroll effect
-            const header = document.getElementById('header');
-            
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-        });
-    </script>
 </body>
-</html>4>AI Vision Analysis</h4>
-                                <p>A multimodal LLM (like Google Gemini, GPT-4o, or Claude) analyzes the image against passport photo criteria.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="4">
-                                <h4>Structured Output Parsing</h4>
-                                <p>The AI response is parsed into a structured format with validation results and specific feedback.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="5">
-                                <h4>Decision Routing</h4>
-                                <p>The workflow branches based on validation results, providing different responses for success vs. failure.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="6">
-                                <h4>Detailed Feedback</h4>
-                                <p>For rejected photos, detailed explanation and improvement suggestions are provided.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="7">
-                                <h4>Audit Logging</h4>
-                                <p>All validation decisions are logged for compliance, accountability, and system improvement.</p>
-                            </div>
-                        </div>
-                        
-                        <a href="#implementation" class="btn btn-secondary">View Implementation</a>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="card fade-in">
-                        <h3>Privacy-Conscious SQL Agent</h3>
-                        <p>This workflow pattern demonstrates how to create AI database agents that respect data privacy by limiting AI access to schema information only.</p>
-                        
-                        <div class="workflow-container">
-                            <div class="workflow-step" data-step="1">
-                                <h4>Schema Extraction</h4>
-                                <p>Database schema (structure) is extracted without exposing actual data.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="2">
-                                <h4>Natural Language Query</h4>
-                                <p>The user submits a question or request in natural language.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="3">
-                                <h4>AI Query Generation</h4>
-                                <p>The AI agent generates SQL queries based solely on schema information and the user's request.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="4">
-                                <h4>Query Validation</h4>
-                                <p>Generated SQL is validated for security and performance considerations.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="5">
-                                <h4>Secure Execution</h4>
-                                <p>Validated queries are executed in a separate process with appropriate access controls.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="6">
-                                <h4>Result Formatting</h4>
-                                <p>Query results are formatted into a user-friendly response.</p>
-                            </div>
-                        </div>
-                        
-                        <a href="#examples" class="btn">See Example</a>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="card fade-in">
-                        <h3>Multi-Agent Hierarchical System</h3>
-                        <p>This advanced pattern demonstrates how to implement team-like structures with specialized AI agents coordinated by a central gatekeeper.</p>
-                        
-                        <div class="workflow-container">
-                            <div class="workflow-step" data-step="1">
-                                <h4>Request Intake</h4>
-                                <p>The system receives a complex request requiring multiple specialized skills.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="2">
-                                <h4>Gatekeeper Analysis</h4>
-                                <p>A primary "gatekeeper" agent analyzes the request and determines which specialized agents to engage.</p>
-                            </div>
-                            
-                            <div class="workflow-step" data-step="3">
-                                <h
+</html>
