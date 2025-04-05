@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Automation Ideas | 2jSoftware</title>
     <link rel="stylesheet" href="../css/style.css"> <!-- Link to the main site's CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <style>
         /* Additional styles specific to this sub-page if needed */
         body {
@@ -21,6 +22,11 @@
         .subpage-header h1 {
             color: var(--primary-color);
             font-size: clamp(2rem, 4vw, 3rem);
+        }
+        .subpage-header p {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-top: 1rem;
         }
         .subpage-content {
             padding: 4rem 0;
@@ -80,7 +86,7 @@
         </div>
     </header>
 
-    <main class="subpage-content">
+    <main id="main-content" class="subpage-content">
         <div class="container">
 
             <div class="content-section">
@@ -172,5 +178,77 @@
             </div>
         </div>
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Animate header
+        anime({
+            targets: '.subpage-header h1, .subpage-header p',
+            translateY: [-20, 0],
+            opacity: [0, 1],
+            delay: anime.stagger(100),
+            duration: 800,
+            easing: 'easeOutExpo'
+        });
+
+        // Use Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('.content-section');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    
+                    // Animate the section itself
+                    anime({
+                        targets: section,
+                        translateY: [50, 0],
+                        opacity: [0, 1],
+                        duration: 1000,
+                        easing: 'easeOutExpo'
+                    });
+
+                    // Animate list items within the section
+                    anime({
+                        targets: section.querySelectorAll('li'),
+                        translateX: [-20, 0],
+                        opacity: [0, 1],
+                        delay: anime.stagger(50, { start: 300 }), // Stagger with a slight delay after section animates
+                        duration: 600,
+                        easing: 'easeOutExpo'
+                    });
+                    
+                    // Animate workflow diagrams (if they exist)
+                    const diagrams = section.querySelectorAll('.workflow-diagram');
+                    if (diagrams.length > 0) {
+                        anime({
+                            targets: diagrams,
+                            opacity: [0, 1],
+                            scale: [0.95, 1],
+                            delay: 500, // Delay after section animates
+                            duration: 800,
+                            easing: 'easeOutExpo'
+                        });
+                    }
+
+                    observer.unobserve(section); // Stop observing once animated
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        sections.forEach(section => {
+            // Initially hide sections for animation
+            section.style.opacity = 0;
+            observer.observe(section);
+        });
+    });
+    </script>
 </body>
 </html>

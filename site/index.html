@@ -3,15 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional Software Engineering, AI/ML, and IT Solutions in Cleveland, Ohio">
-    <meta name="keywords" content="software engineering, AI, ML, IT, Cleveland, Ohio">
-    <title>2jSoftware</title>
-    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- SEO Meta Tags -->
+    <title>2jSoftware | AI & Software Solutions in Cleveland, OH</title>
+    <meta name="description" content="2jSoftware delivers custom software engineering, AI/ML solutions, and IT services to businesses in Cleveland and surrounding areas. Transforming ideas into digital reality.">
+    <meta name="keywords" content="software engineering, AI, ML, IT services, custom software, Cleveland, Ohio, automation, machine learning">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/"> <!-- Replace with actual URL -->
+    <meta property="og:title" content="2jSoftware | AI & Software Solutions in Cleveland, OH">
+    <meta property="og:description" content="Custom software engineering, AI/ML solutions, and IT services in the Cleveland area.">
+    <meta property="og:image" content="https://your-domain.com/assets/images/og-image.jpg"> <!-- Replace with actual image URL -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/"> <!-- Replace with actual URL -->
+    <meta property="twitter:title" content="2jSoftware | AI & Software Solutions in Cleveland, OH">
+    <meta property="twitter:description" content="Custom software engineering, AI/ML solutions, and IT services in the Cleveland area.">
+    <meta property="twitter:image" content="https://your-domain.com/assets/images/twitter-image.jpg"> <!-- Replace with actual image URL -->
+
+    <!-- Favicon (Example - Replace with your actual favicon links) -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Preconnect for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload CSS -->
+    <link rel="preload" href="css/style.css" as="style">
+    <!-- Preload Fonts (adjust href based on final loaded font files if needed) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" as="style">
+    <!-- Preload Key JS -->
+    <link rel="preload" href="js/anime.min.js" as="script"> <!-- Assuming anime.js is local or use CDN link -->
+    <link rel="preload" href="js/main.js" as="script">
+    <link rel="preload" href="js/home-animations.js" as="script">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Scripts (Load Anime.js early if needed, or keep defer at end) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "2jSoftware",
+      "url": "https://your-domain.com/", /* Replace */
+      "logo": "https://your-domain.com/assets/images/logo.png", /* Replace */
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-XXX-XXX-XXXX", /* Replace */
+        "contactType": "Customer Service"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Your Street Address", /* Replace */
+        "addressLocality": "Cleveland",
+        "addressRegion": "OH",
+        "postalCode": "Your Zip", /* Replace */
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        /* Add links to social media profiles if applicable */
+        /* "https://www.linkedin.com/company/your-company", */
+        /* "https://twitter.com/your-handle" */
+      ]
+    }
+    </script>
 </head>
 <body>
+    <a href="#main-content" id="skip-link" class="skip-link">Skip to main content</a>
+
     <nav class="nav">
         <div class="container">
             <div class="nav__logo">2jSoftware</div>
@@ -29,11 +97,15 @@
         </div>
     </nav>
 
-    <main>
+    <main id="main-content">
         <section id="home" class="hero">
             <div class="container">
-                <h1>Transforming Ideas into Digital Reality</h1>
-                <p>Cleveland's premier software engineering and AI solutions provider</p>
+                <!-- SVG will be generated here by JS -->
+                <svg class="hero-background-svg" width="100%" height="100%" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+                    <g class="matrix-grid"></g> 
+                </svg>
+                <h1><span class="h1-word">Transforming</span> <span class="h1-word">Ideas</span> <span class="h1-word">into</span> <span class="h1-word">Digital</span> <span class="h1-word">Reality</span></h1>
+                <p><span class="p-word">Cleveland's</span> <span class="p-word">premier</span> <span class="p-word">software</span> <span class="p-word">engineering</span> <span class="p-word">and</span> <span class="p-word">AI</span> <span class="p-word">solutions</span> <span class="p-word">provider</span></p>
                 <a href="#contact" class="btn btn--primary">Get in Touch</a>
             </div>
         </section>
@@ -121,5 +193,12 @@
     </footer>
 
     <script src="js/main.js" defer></script>
+    <script src="js/home-animations.js" defer></script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" title="Go to top" aria-label="Scroll back to top">
+        &uarr; <!-- Up arrow -->
+    </button>
+
 </body>
 </html>

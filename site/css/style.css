@@ -1,8 +1,8 @@
 :root {
-  --primary-color: #3b82f6;
+  --primary-color: #60a5fa;
   --text-color: #e5e7eb;
   --bg-color: #111827;
-  --accent-color: #60a5fa;
+  --accent-color: #8ec3ff;
   --card-bg-color: #1f2937;
   --border-color: #374151;
   --font-heading: 'Space Grotesk', sans-serif;
@@ -91,6 +91,30 @@ body {
   display: flex;
   align-items: center;
   padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-background-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.matrix-grid circle {
+    fill: var(--primary-color);
+    opacity: 0;
+    transform-origin: center center;
 }
 
 .hero h1 {
@@ -98,6 +122,20 @@ body {
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.2;
   margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.hero h1 .h1-word {
+    display: inline-block;
+    margin-right: 0.25em;
+    white-space: nowrap;
+}
+
+.hero p .p-word {
+    display: inline-block;
+    opacity: 0;
+    margin-right: 0.25em;
+    white-space: nowrap;
 }
 
 /* Services Section */
@@ -341,4 +379,86 @@ img {
 
 .hero .btn {
   animation-delay: 0.2s;
+}
+
+/* Accessibility Enhancements */
+*:focus-visible {
+    outline: 3px solid var(--accent-color); /* Updated */
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px rgba(96, 165, 250, 0.3); /* Adjusted glow color to match new primary */
+    border-radius: 4px;
+}
+
+/* Ensure buttons and links get focus style */
+.btn:focus-visible,
+.nav__menu a:focus-visible,
+.footer__links a:focus-visible,
+.project-card:focus-visible,
+.back-link:focus-visible {
+    /* Styles applied by *:focus-visible */
+}
+
+/* Style form inputs on focus-visible */
+input:focus-visible,
+textarea:focus-visible {
+    /* outline: none; */ /* Remove default outline only if custom is applied */
+    /* border-color: var(--primary-color); Already handled */
+    /* Styles applied by *:focus-visible */
+}
+
+/* Scroll to Top Button */
+#scrollToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999; /* Ensure it's above most content */
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 50%; /* Make it circular */
+    font-size: 20px; /* Adjust arrow size */
+    line-height: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0.8;
+    transition: opacity 0.3s, background-color 0.3s, transform 0.3s;
+}
+
+#scrollToTopBtn:hover {
+    background-color: var(--accent-color);
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+#scrollToTopBtn:focus-visible {
+    /* Uses the general *:focus-visible style defined earlier */
+    outline-offset: 4px; /* Adjust offset for circular button */
+}
+
+/* End Scroll to Top Button */
+
+/* Accessibility Enhancements */
+.skip-link {
+    position: absolute;
+    top: -50px; /* Start off-screen */
+    left: 10px;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 15px;
+    z-index: 1100; /* Above nav */
+    transition: top 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.skip-link:focus {
+    /* Style applied by *:focus-visible rule below */
+    /* We only adjust position and opacity here */
+    top: 10px;
+    opacity: 1;
 }

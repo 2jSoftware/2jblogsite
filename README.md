@@ -22,10 +22,16 @@ project-root/
 │   ├── css/             # CSS directory
 │   │   └── style.css    # Main stylesheet
 │   ├── js/              # JavaScript directory
-│   │   └── main.js      # Main JavaScript file
-│   └── assets/          # Images and other static assets
-│       ├── images/      # Image files
-│       └── icons/       # Icon files
+│   │   ├── main.js      # Core interactivity (menu, smooth scroll)
+│   │   ├── home-animations.js # Animations for index.html
+│   │   └── subpage-animations.js # Animations for sub-pages
+│   ├── assets/          # Images (optimize!) and other static assets
+│   │   ├── images/      # Image files
+│   │   └── icons/       # Icon files
+│   ├── autobusiness/    # Sub-site example
+│   │   └── business-automation-ideasGen.html
+│   └── workflows/       # Sub-site example
+│       └── ai-workflows.html
 └── README.md            # Project documentation
 ```
 
@@ -62,7 +68,9 @@ To run this project locally:
 
 ## Technical Details
 
-- Built with pure HTML, CSS, and minimal vanilla JavaScript
-- No external libraries or frameworks
-- Optimized for Core Web Vitals
+- Built with pure HTML, CSS, and vanilla JavaScript + Anime.js
+- Organized JavaScript for core functionality (`main.js`) and animations (`home-animations.js`, `subpage-animations.js`).
+- Advanced animations using Anime.js (Timelines, Staggering, SVG Drawing, Spring Easing, Scroll Triggers).
+- Performance considerations: Resource preloading, `IntersectionObserver` for scroll animations.
+- Accessibility features: Semantic HTML, `prefers-reduced-motion` support for animations, enhanced focus indicators.
 - Caddy server for automatic HTTPS

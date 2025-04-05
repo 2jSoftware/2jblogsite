@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Workflows Explained | 2jSoftware</title>
-    <link rel="stylesheet" href="../css/style.css"> <!-- Link to the main site's CSS -->
+
+    <!-- Preload CSS -->
+    <link rel="preload" href="../css/style.css" as="style">
+    <!-- Preload Key JS -->
+    <link rel="preload" href="../js/anime.min.js" as="script">
+    <link rel="preload" href="../js/subpage-animations.js" as="script">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <style>
         /* Re-use styles from the other sub-page for consistency */
         body {
@@ -20,6 +28,11 @@
         .subpage-header h1 {
             color: var(--primary-color);
             font-size: clamp(2rem, 4vw, 3rem);
+        }
+        .subpage-header p {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-top: 1rem;
         }
         .subpage-content {
             padding: 4rem 0;
@@ -82,6 +95,8 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" id="skip-link" class="skip-link">Skip to main content</a>
+
     <header class="subpage-header">
         <div class="container">
             <h1>Demystifying AI Workflows: From Simple Steps to Smart Systems</h1>
@@ -89,7 +104,7 @@
         </div>
     </header>
 
-    <main class="subpage-content">
+    <main id="main-content" class="subpage-content">
         <div class="container">
 
             <div class="content-section">
@@ -183,5 +198,13 @@
             </div>
         </div>
     </footer>
+
+    <script src="../js/subpage-animations.js" defer></script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" title="Go to top" aria-label="Scroll back to top">
+        &uarr; <!-- Up arrow -->
+    </button>
+
 </body>
 </html>
